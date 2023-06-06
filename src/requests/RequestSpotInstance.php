@@ -21,6 +21,7 @@ class RequestSpotInstance extends AbstractEc2Request
     private $m_valid_until = null; # This does not have to ever be set e.g. optional
     private $m_launch_group = null; # This does not have to ever be set e.g. optional
     private $m_generatedSpotRequestIds = array();
+    private $m_spotInstanceType = null;
     
     
     /**

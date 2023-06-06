@@ -13,6 +13,7 @@ class PrivateIp
 {
     private $m_name;
     private $m_primary;
+    private $m_ip;
     
     
     /**

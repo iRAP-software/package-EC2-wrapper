@@ -14,6 +14,7 @@ class NetworkInterface
 {
     private $m_networkInterfaceId;
     private $m_assosciatePublicIpAddress;
+    private $m_privateIpAddress;
     private $m_deviceIndex;
     private $m_subnetId;
     private $m_groups; # not sure what this represents.
