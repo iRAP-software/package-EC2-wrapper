@@ -110,8 +110,7 @@ class RequestRunInstances extends AbstractEc2Request
             'DisableApiTermination'             => $this->m_disableApiTermination,
             'DryRun'                            => $this->m_dryRun,
             'MaxCount'                          => $this->m_maxCount,
-            'MinCount'                          => $this->m_minCount,
-            'InstanceInitiatedShutdownBehavior' => $this->m_instanceInitiatedShutdownBehavior
+            'MinCount'                          => $this->m_minCount
         );
         
         $options = array_merge($options, $this->m_launchSpecification->toArray());
