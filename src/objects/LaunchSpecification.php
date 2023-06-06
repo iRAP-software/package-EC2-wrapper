@@ -13,7 +13,7 @@ class LaunchSpecification
     private $m_image_id;
     private $m_keyName; # The name of the key pair for SSH authentication when deployed.
     private $m_instanceType;
-    private $m_securityGroup;
+    private $m_securityGroup = null;
     private $m_ebsOptimized = false;
     private $m_groupSet = null;
     private $m_networkInterfaces = array();

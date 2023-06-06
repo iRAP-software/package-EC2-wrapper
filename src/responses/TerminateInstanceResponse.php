@@ -9,7 +9,7 @@ namespace iRAP\Ec2Wrapper\Responses;
 class TerminateInstanceResponse extends AbstractResponse
 {
     private $m_terminatingInstanceIds;
-    private $m_instances;
+    private $m_instances = array();
     
     
     public function __construct($rawAmazonResponse)
