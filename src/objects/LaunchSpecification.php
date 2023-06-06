@@ -25,7 +25,7 @@ class LaunchSpecification
     private $m_monitoringEnabled = false;
     private $m_iamProfile = array(); # optional array of IamInstanceProfile objects
     private $m_tagSpecifications = array();
-    
+    private $m_subnetId = null;
     
     /**
      * Create the LaunchSpecification.

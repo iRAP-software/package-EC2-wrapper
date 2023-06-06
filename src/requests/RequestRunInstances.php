@@ -17,6 +17,7 @@ class RequestRunInstances extends AbstractEc2Request
     private $m_clientToken = null;
     private $m_dryRun = false;
     private $m_instanceInitiatedShutdownBehavior = 'stop';
+    private $m_terminateEbsOnTermination;
     
     # Array list of any generated instances created when request(s) sent.
     private $m_generatedInstances = array();

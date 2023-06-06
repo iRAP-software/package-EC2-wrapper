@@ -11,6 +11,7 @@ namespace iRAP\Ec2Wrapper\Requests;
 class RequestDescribeInstances extends AbstractEc2Request
 {
     private $m_filters = null;
+    private $m_instance_ids;
     
     
     /**
