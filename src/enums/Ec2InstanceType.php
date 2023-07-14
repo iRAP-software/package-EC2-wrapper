@@ -235,7 +235,7 @@ class Ec2InstanceType
      *                    4 - m4 4xlarge
      *                    5 - m4 10xlarge
      *                    6 - m4 16xlarge
-     * @throws Exception if size is not an integer between 1 and 4.
+     * @throws \Exception if size is not an integer between 1 and 4.
      */
     public static function createGeneralPurposeOld($size) : Ec2InstanceType
     {
@@ -285,6 +285,8 @@ class Ec2InstanceType
                 throw new \Exception($err_msg);
             }
         }
+
+        return $ec2InstanceType;
     }
     
     
@@ -297,7 +299,7 @@ class Ec2InstanceType
      *                  4 - 122   GiB
      *                  5 - 244   GiB
      *                  6 - 488   GiB
-     * @throws Exception if size was not a valid number.
+     * @throws \Exception if size was not a valid number.
      */
     public static function createHighMemory($size) : Ec2InstanceType
     {
@@ -347,6 +349,8 @@ class Ec2InstanceType
                 throw new \Exception($err_msg);
             }
         }
+
+        return $ec2InstanceType;
     }
     
     
@@ -355,8 +359,8 @@ class Ec2InstanceType
      * @param int $size - integer between 1-5 to represent the size of the instance with 1 being
      *                    the smallest, and 4 being the largest and most expensive.
      *                    Each step in size doubles the compute capability and price.
-     * @return \Ec2InstanceType
-     * @throws Exception if $size provided was not an allowed value.
+     * @return Ec2InstanceType
+     * @throws \Exception if $size provided was not an allowed value.
      */
     public static function createOldHighCpu($size) : Ec2InstanceType
     {
@@ -627,7 +631,7 @@ class Ec2InstanceType
      * Allows the user to create one of this object from passing a string which is validated.
      * @param String $size - the size of the instance in Amazon string form.
      * @return Ec2InstanceType
-     * @throws Exception if an unrecognized size/type is given.
+     * @throws \Exception if an unrecognized size/type is given.
      */
     public static function createFromString($size) : Ec2InstanceType
     {
