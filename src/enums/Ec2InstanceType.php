@@ -50,6 +50,60 @@ class Ec2InstanceType
         $ec2InstanceType = $sizeMap[$size];
         return new Ec2InstanceType($ec2InstanceType);
     }
+
+
+    /**
+     * Create a T3 (burstable) Intel-based instance.
+     * @param int $size - int between 1 and 7 with 1 being the smallest size for t2.micro.
+     * @return Ec2InstanceType
+     */
+    public static function createT3Intel(int $size) : Ec2InstanceType
+    {
+        if ($size > 7 || $size < 1)
+        {
+            throw new \Exception("Invalid size specified.");
+        }
+
+        $sizeMap = array(
+            1 => 't3.nano',
+            2 => 't3.micro',
+            3 => 't3.small',
+            4 => 't3.medium',
+            5 => 't3.large',
+            6 => 't3.xlarge',
+            7 => 't3.2xlarge',
+        );
+
+        $ec2InstanceType = $sizeMap[$size];
+        return new Ec2InstanceType($ec2InstanceType);
+    }
+
+
+    /**
+     * Create a T3 (burstable) Intel-based instance.
+     * @param int $size - int between 1 and 7 with 1 being the smallest size for t2.micro.
+     * @return Ec2InstanceType
+     */
+    public static function createT3Amd(int $size) : Ec2InstanceType
+    {
+        $sizeMap = array(
+            1 => 't3a.nano',
+            2 => 't3a.micro',
+            3 => 't3a.small',
+            4 => 't3a.medium',
+            5 => 't3a.large',
+            6 => 't3a.xlarge',
+            7 => 't3a.2xlarge',
+        );
+
+        if ($size > count($sizeMap) || $size < 1)
+        {
+            throw new \Exception("Invalid size specified.");
+        }
+
+        $ec2InstanceType = $sizeMap[$size];
+        return new Ec2InstanceType($ec2InstanceType);
+    }
     
     
     /**
@@ -349,6 +403,68 @@ class Ec2InstanceType
         
         return $ec2InstanceType;
     }
+
+
+    /**
+     * Create a C6 Intel compute instance.
+     * @param int $size - int between 1 and 10 with 1 being the smallest size for a c6i.large and 10 being the full
+     * metal box.
+     * @return Ec2InstanceType
+     */
+    public static function createC6Intel(int $size)
+    {
+        $sizeMap = array(
+            1 => 'c6i.large',
+            2 => 'c6i.xlarge',
+            3 => 'c6i.2xlarge',
+            4 => 'c6i.4xlarge',
+            5 => 'c6i.8xlarge',
+            6 => 'c6i.12xlarge',
+            7 => 'c6i.16xlarge',
+            8 =>'c6i.24xlarge',
+            9 => 'c6i.32xlarge',
+            10 =>'c6i.metal',
+        );
+
+        if ($size > count($sizeMap) || $size < 1)
+        {
+            throw new \Exception("Invalid size specified.");
+        }
+
+        $ec2InstanceType = $sizeMap[$size];
+        return new Ec2InstanceType($ec2InstanceType);
+    }
+
+
+    /**
+     * Create a C6 AMD compute instance.
+     * @param int $size - int between 1 and 10 with 1 being the smallest size for a c6a.large and 10 being the full
+     * metal box.
+     * @return Ec2InstanceType
+     */
+    public static function createC6Amd(int $size)
+    {
+        $sizeMap = array(
+            1 => 'c6a.large',
+            2 => 'c6a.xlarge',
+            3 => 'c6a.2xlarge',
+            4 => 'c6a.4xlarge',
+            5 => 'c6a.8xlarge',
+            6 => 'c6a.12xlarge',
+            7 => 'c6a.16xlarge',
+            8 => 'c6a.24xlarge',
+            9 => 'c6a.32xlarge',
+            10 => 'c6a.metal',
+        );
+
+        if ($size > count($sizeMap) || $size < 1)
+        {
+            throw new \Exception("Invalid size specified.");
+        }
+
+        $ec2InstanceType = $sizeMap[$size];
+        return new Ec2InstanceType($ec2InstanceType);
+    }
     
     
     /**
@@ -525,6 +641,24 @@ class Ec2InstanceType
             't2.large',
             't2.xlarge',
             't2.2xlarge',
+
+            # T3 Burstable Intel Instances
+            't3.nano',
+            't3.micro',
+            't3.small',
+            't3.medium',
+            't3.large',
+            't3.xlarge',
+            't3.2xlarge',
+
+            # T3 Burstable AMD Instances
+            't3a.nano',
+            't3a.micro',
+            't3a.small',
+            't3a.medium',
+            't3a.large',
+            't3a.xlarge',
+            't3a.2xlarge',
             
             'm1.small',
             'm1.medium',
@@ -585,14 +719,152 @@ class Ec2InstanceType
             'c5.2xlarge',
             'c5.4xlarge',
             'c5.9xlarge',
+            'c5.12xlarge',
             'c5.18xlarge',
+            'c5.24xlarge',
+            'c5.metal',
             
+            # C5 instances using AMD CPUs instead of Intel
+            'c5a.large',
+            'c5a.xlarge',
+            'c5a.2xlarge',
+            'c5a.4xlarge',
+            'c5a.8xlarge',
+            'c5a.12xlarge',
+            'c5a.16xlarge',
+            'c5a.24xlarge',
+
+            # C5 instances with local NVME storage
             'c5d.large',
             'c5d.xlarge',
             'c5d.2xlarge',
             'c5d.4xlarge',
             'c5d.9xlarge',
+            'c5d.12xlarge',
             'c5d.18xlarge',
+            'c5d.24xlarge',
+            'c5d.metal',
+
+            # C5 instances using AMD CPUs with local NVME storage
+            'c5ad.large',
+            'c5ad.xlarge',
+            'c5ad.2xlarge',
+            'c5ad.4xlarge',
+            'c5ad.8xlarge',
+            'c5ad.12xlarge',
+            'c5ad.16xlarge',
+            'c5ad.24xlarge',
+
+            # C5 with high performance networking
+            'c5n.large',
+            'c5n.xlarge',
+            'c5n.2xlarge',
+            'c5n.4xlarge',
+            'c5n.9xlarge',
+            'c5n.18xlarge',
+            'c5n.metal',
+
+            # C6 compute instances using Graviton ARM processors
+            'c6g.medium',
+            'c6g.large',
+            'c6g.xlarge',
+            'c6g.2xlarge',
+            'c6g.4xlarge',
+            'c6g.8xlarge',
+            'c6g.12xlarge',
+            'c6g.16xlarge',
+            'c6g.metal',
+
+            # C6 compute instances using Graviton ARM processors and high performance networking
+            'c6gn.medium',
+            'c6gn.large',
+            'c6gn.xlarge',
+            'c6gn.2xlarge',
+            'c6gn.4xlarge',
+            'c6gn.8xlarge',
+            'c6gn.12xlarge',
+            'c6gn.16xlarge',
+
+            # C6 compute instances using Graviton ARM processors and local NVME storage
+            'c6gd.medium',
+            'c6gd.large',
+            'c6gd.xlarge',
+            'c6gd.2xlarge',
+            'c6gd.4xlarge',
+            'c6gd.8xlarge',
+            'c6gd.12xlarge',
+            'c6gd.16xlarge',
+            'c6gd.metal',
+
+            # C6 compute instances with AMD CPUs
+            'c6a.large',
+            'c6a.xlarge',
+            'c6a.2xlarge',
+            'c6a.4xlarge',
+            'c6a.8xlarge',
+            'c6a.12xlarge',
+            'c6a.16xlarge',
+            'c6a.24xlarge',
+            'c6a.32xlarge',
+            'c6a.48xlarge',
+            'c6a.metal',
+
+            # C6 compute instances with Intel CPUs
+            'c6i.large',
+            'c6i.xlarge',
+            'c6i.2xlarge',
+            'c6i.4xlarge',
+            'c6i.8xlarge',
+            'c6i.12xlarge',
+            'c6i.16xlarge',
+            'c6i.24xlarge',
+            'c6i.32xlarge',
+            'c6i.metal',
+
+            # C6 compute instances using intel CPUs and high performance networking
+            'c6in.large',
+            'c6in.xlarge',
+            'c6in.2xlarge',
+            'c6in.4xlarge',
+            'c6in.8xlarge',
+            'c6in.12xlarge',
+            'c6in.16xlarge',
+            'c6in.24xlarge',
+            'c6in.32xlarge',
+            'c6in.metal',
+
+            # C6 compute instances with Intel CPUs and local NVME storage
+            'c6id.large',
+            'c6id.xlarge',
+            'c6id.2xlarge',
+            'c6id.4xlarge',
+            'c6id.8xlarge',
+            'c6id.12xlarge',
+            'c6id.16xlarge',
+            'c6id.24xlarge',
+            'c6id.32xlarge',
+            'c6id.metal',
+
+            # C7 compute instances using Graviton ARM processors
+            'c7g.medium',
+            'c7g.large',
+            'c7g.xlarge',
+            'c7g.2xlarge',
+            'c7g.4xlarge',
+            'c7g.8xlarge',
+            'c7g.12xlarge',
+            'c7g.16xlarge',
+            'c7g.metal',
+
+            # C7 compute instances using Graviton ARM processors and high performance networking
+            'c7gn.medium',
+            'c7gn.large',
+            'c7gn.xlarge',
+            'c7gn.2xlarge',
+            'c7gn.4xlarge',
+            'c7gn.8xlarge',
+            'c7gn.12xlarge',
+            'c7gn.16xlarge',
             
             // istorage optimized
             'i2.xlarge',
@@ -608,6 +880,10 @@ class Ec2InstanceType
             'cc1.4xlarge',
             'cc2.8xlarge',
             'cg1.4xlarge',
+
+            // HP6
+            'hpc6a.48xlarge',
+            'hpc6id.32xlarge',
         );
         
         if (!in_array($size, $allowedTypes))
