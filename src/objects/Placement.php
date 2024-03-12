@@ -61,7 +61,7 @@ class Placement
     public function createWithGroupName($group_name)
     {
         $placement = new Placement();
-        $placement->m_availability_zone = $region;
+        $placement->m_group_name = $group_name;
         return $placement;
     }
     
