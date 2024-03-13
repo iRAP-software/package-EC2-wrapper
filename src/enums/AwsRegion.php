@@ -139,7 +139,7 @@ class AwsRegion
     }
     
     
-    public function __toString() 
+    public function __toString() : string
     {
         return $this->m_region;
     }

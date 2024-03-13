@@ -140,13 +140,11 @@ class RequestSpotInstance extends AbstractEc2Request
      * a strtotime() conversion it would return something else.
      * @throws Exception
      */
-    private static function validate_time_string()
+    private static function validate_time_string($dateTime)
     {
         if (strtotime($dateTime) === FALSE)
         {
-            $errMsg = 
-                'Time strings need to be compatible with strToTime for spot instnac requests';
-            
+            $errMsg = 'Time strings need to be compatible with strToTime for spot instnac requests';
             throw new \Exception($errMsg);
         }
     }
